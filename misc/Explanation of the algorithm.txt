@@ -1,0 +1,33 @@
+Reading city coordinates and initializing distances:
+
+The code starts by reading city coordinates from a file named "city_coordinates.txt" to determine the number of cities.
+It initializes a 2D array dist to represent the distances between each pair of cities. The array is initialized based on road distances between cities.
+Floyd-Warshall Algorithm:
+
+The Floyd-Warshall algorithm is used to find the shortest distances between all pairs of vertices (cities) in the graph.
+Three nested loops iterate over all vertices (cities) to consider each vertex as a possible intermediate vertex in the paths being examined.
+For each pair of vertices (a, b), if the shortest path from a to b passing through the current intermediate vertex k is shorter than the previously known shortest path, the algorithm updates the shortest distance.
+Input of starting and destination cities:
+
+The user is prompted to input the starting city and destination city.
+The input is validated to ensure that the entered city names exist in the list of cities.
+Finding the shortest path:
+
+If a path exists between the starting and destination cities (i.e., dist[first_city][last_city] != Double.POSITIVE_INFINITY), the algorithm proceeds to visualize the shortest path.
+The total distance of the shortest path is printed, converted from meters to kilometers.
+The StdDraw library is used to create a map visualization.
+City names and their coordinates are plotted on the map.
+The connections between cities are read from the file "city_connections.txt" and drawn on the map as lines.
+Printing the shortest path:
+
+The printShortestPath function is called to print the shortest path on the map.
+It starts by setting the pen color and drawing the starting city on the map.
+While the current city is not equal to the destination city, it iteratively finds the next city in the shortest path using the getNextCity function.
+The names of the cities along the shortest path are printed, separated by arrows, and their positions are marked on the map.
+Finding the next city in the shortest path:
+
+The getNextCity function is responsible for finding the next city in the shortest path.
+It iterates over all possible next cities and checks if the distance from the current city to the destination city equals the sum of the distances from the current city to the next city and from the next city to the destination city.
+If the next city is a neighbor of the current city, it is considered a valid candidate for the shortest path.
+The function returns the index of the next city along the shortest path.
+Overall, the algorithm efficiently finds the shortest path between two cities on the map and visualizes it using the StdDraw library.

@@ -1,0 +1,60 @@
+function findTheShortest(cities, distances)
+    // Read the file to determine the number of cities
+    num_cities = countCities()
+
+    // Initialize distances using Floyd-Warshall algorithm
+    for k = 0 to num_cities
+        for i = 0 to num_cities
+            for j = 0 to num_cities
+                if dist[i][k] ≠ ∞ and dist[k][j] ≠ ∞
+                    newDistance = dist[i][k] + dist[k][j]
+                    if newDistance < dist[i][j]
+                        dist[i][j] = newDistance
+
+    // Prompt user to input starting and destination cities
+    first_city, last_city = getCityInput(cities, num_cities)
+
+    // If a path exists between the cities
+    if dist[first_city][last_city] ≠ ∞
+        print "Total distance: " + dist[first_city][last_city] / 1000
+        drawMap(cities, num_cities, distances)
+        printShortestPath(cities, distances, first_city, last_city)
+    else
+        print "No path could be found."
+
+
+function getCityInput(cities, num_cities)
+    initialcity = getInput("Enter starting city: ")
+    while initialcity is not a valid city name
+        Print error message
+        initialcity = getInput("Enter starting city: ")
+
+    finalcity = getInput("Enter destination city: ")
+    while finalcity is not a valid city name
+        Print error message
+        finalcity = getInput("Enter destination city: ")
+
+    return first_city, last_city
+
+
+function printShortestPath(cities, distances, source, destination)
+    Draw starting city on the map
+    Print "Path: " + source city name
+
+    while source ≠ destination
+        nextCity = getNextCity(cities, distances, source, destination)
+        Print " -> " + nextCity city name
+        source = nextCity
+
+function getNextCity(cities, distances, currentCity, destination)
+    for each nextCity in distances
+        if nextCity is not currentCity and not destination
+            if distances[currentCity][destination] == distances[currentCity][nextCity] + distances[nextCity][destination]
+                if nextCity is a neighbor of currentCity
+                    Draw points, lines, and city names on map
+                    Draw line between currentCity and nextCity
+                    return nextCity
+
+    if destination is a neighbor of currentCity
+        Draw line between currentCity and destination
+    return destination
